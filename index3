@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+     <link rel="stylesheet" href="css/framework7.material.css">
+ <!--<link rel="stylesheet" href="../../dist/css/framework7.ios.min.css">-->
+ <link rel="stylesheet" href="css/framework7.material.colors.css">
+ 
+<!-- <link rel="stylesheet" href="../../dist/css/framework7.ios.colors.min.css">-->
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"> 
+<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Jura|Lobster|Rajdhani|Roboto+Condensed" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+    
+    
+    <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/my-app.css">
+  </head>
+
+ <script language="JavaScript" type="text/javascript">
+//объявляем переменные
+var main;	 
+var base = 60; 
+var clocktimer,dateObj,dh,dm,ds,ms; 
+var readout=''; 
+var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0; 
+//функция для очистки поля
+function ClearСlock() { 
+	clearTimeout(clocktimer); 
+	h=1;m=1;tm=1;s=0;ts=0;ms=0; 
+	init=0;
+	readout='00:00.00'; 
+	document.MyForm.stopwatch.value=readout; 
+} 
+//функция для старта секундомера
+     var timerbig
+function StartTIME() { 
+	var cdateObj = new Date(); 
+	var t = (cdateObj.getTime() - dateObj.getTime())-(s*1000); 
+	if (t>999) { s++; } 
+	if (s>=(m*base)) { 
+		ts=0; 
+		m++; 
+	} else { 
+		ts=parseInt((ms/100)+s); 
+		if(ts>=base) { ts=ts-((m-1)*base); } 
+	} 
+	if (m>(h*base)) { 
+		tm=1; 
+		h++; 
+	} else { 
+		tm=parseInt((ms/100)+m); 
+		if(tm>=base) { tm=tm-((h-1)*base); } 
+	} 
+	ms = Math.round(t/10); 
+	if (ms>99) {ms=0;} 
+	if (ms==0) {ms='00';} 
+	if (ms>0&&ms<=9) { ms = '0'+ms; } 
+	if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; } 
+	dm=tm-1; 
+	if (dm>0) { if (dm<10) { dm = '0'+dm; }} else { dm = '00'; } 
+	dh=h-1; 
+	if (dh>0) { if (dh<10) { dh = '0'+dh; }} else { dh = '00'; } 
+	/*readout = +dh + ':' + dm + ':' + ds + '.' + ms;*/
+    readout = dm + ':' + ds + '.' + ms;
+	document.MyForm.stopwatch.value = readout;
+   
+  
+ /*  if(document.getElementsByName('my-radio')[1].checked="true")
+         {
+        var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0; 
+         };
+    */
+    
+	clocktimer = setTimeout("StartTIME()",1); 
+    timerbig=(dm*60)+(ds)
+     document.MyForm.stopwatch3x.value=timerbig;
+    
+    
+} 
+//Функция запуска и остановки
+function StartStop() { 
+	if (init==0){ 
+		ClearСlock();
+		dateObj = new Date(); 
+		StartTIME(); 
+		init=1; 
+       
+	} else { 
+		clearTimeout(clocktimer);
+		init=0;  
+		/*Процедура проверки положения селектора и расчета Времени*/
+        check();
+     
+          
+	} 
+};
+               
+function check()
+ {  
+     var variant=document.getElementsByName('my-radio');
+     if (variant[0].checked==true){
+
+     /*2mm soplo*/
+		
+     var val;
+     val = Number.parseInt(ds)*10;
+     var valsumm;     
+ 	valsumm=(Math.pow(10,(-7)))*(4.2520009)*(Math.pow(val,3)); 
+    valsumm=valsumm+(Math.pow(10,(-4)))*(4.280918)*(Math.pow(val,2))*(-1);
+	valsumm=valsumm+val*(0.5686503); 	 
+	valsumm=valsumm-33.6068923;
+    document.MyForm.stopwatch5x.value=valsumm;     
+    document.MyForm.stopwatch4x.value=val; 
+	main=valsumm; 
+          }
+	 /*4mm soplo*/
+         if (variant[1].checked==true){
+	     var val;
+     val = Number.parseInt(ds)*10;
+     var valsumm;     
+ 	valsumm=(Math.pow(10,(-4)))*(2.1203522)*(Math.pow(val,2)); 
+    valsumm=valsumm+(Math.pow(10,(-6)))*(1.112638)*(Math.pow(val,3))*(-1);
+	valsumm=valsumm+val*(4.7393057); 	 
+	valsumm=valsumm-43.5523435;
+    document.MyForm.stopwatch2x.value=valsumm;     
+    document.MyForm.stopwatch4x.value=val; 
+	main=valsumm; 		 
+          }
+	 /*6mm soplo*/
+         if (variant[2].checked==true){
+    	     var val;
+     val = Number.parseInt(ds)*10;
+     var valsumm;     
+ 	valsumm=(Math.pow(10,(-5)))*(9.1782117)*(Math.pow(val,3)); 
+    valsumm=valsumm+(0.0184844)*(Math.pow(val,2))*(-1);
+	valsumm=valsumm+val*(21.498038); 	 
+	valsumm=valsumm-76.4323174;
+    document.MyForm.stopwatch5x.value=valsumm;     
+    document.MyForm.stopwatch4x.value=val; 
+	main=valsumm; 		 
+          }
+}; 
+
+function ChangeList(){
+	main=Math.round(main);
+	alert(main);
+	document.FormSecond.resultpole.value=main;		
+	 };     
+function change1(){
+    var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0;    
+};                   
+function change2(){
+    var yy = Number.parseInt(ds);
+    yy=yy*4;
+    document.MyForm.stopwatch3x.value = yy; 
+    yy=0;
+};   
+function change3(){
+    var zz = Number.parseInt(ds);
+    zz=zz*6;
+    document.FormSecond.stopwatch4x.value = zz; 
+    zz=0;    
+};   
+ </script>   
+ 
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal theme-orange">
+      <div class="content-block">
+          <p><h2>Наша продукция</h2></p>
+        <div class="content-block-title">Пробоотборники</div>
+<div class="list-block accordion-list">
+  <ul>
+    <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Для газа</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+          <p>- ПГО-50</p>
+          <p>- ПГО-100</p>
+          <p>- ПГО-400</p>
+        </div>
+      </div>
+    </li>
+    <li class="accordion-item">
+       <a href="contacts.html" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+             Нефтепродуктов
+          </div>
+        </div>
+        </a>
+     
+    </li>
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+         Красок
+          </div>
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+    
+        <li class="accordion-item"><a href="#about" class="item-content item-link">
+        <div class="item-inner">
+            <div class="item-title">
+        Агрессивных сред 
+          </div>
+             </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+        
+    </li>
+        <li class="accordion-item"><a href="#about" class="item-content item-link">
+        <div class="item-inner">
+        
+            <div class="item-title">Воды</div>
+         
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title textraja">
+         Пищевых продуктов
+          </div>
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+  </ul>
+</div>
+      <div class="content-block-title">Вискозиметры</div>
+<div class="list-block accordion-list">
+  <ul>
+    <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Вискозиметры</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+          
+          <p><a href="pgo-50.html">- ПГО-50</a></p>
+          <p>- ПГО-100</p>
+          <p>- ПГО-400</p>
+        </div>
+      </div>
+    </li>
+     <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Запорная арматура</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+          <p>- ПГО-50</p>
+          <p>- ПГО-100</p>
+          <p>- ПГО-400</p>
+        </div>
+      </div>
+    </li>
+    <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Микрошприцы</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+          <p>- ПГО-50</p>
+          <p>- ПГО-100</p>
+          <p>- ПГО-400</p>
+        </div>
+      </div>
+    </li>
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Доп. оборудование</div>
+        </div></a>
+ 
+    </li>
+    </ul>
+</div>
+      
+       
+       
+        <p> 
+        <div class="icon">
+        <i class="material-icons">help_outline</i>
+ 
+        </div></p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+      
+      
+        <p>Right panel content goes here</p>
+        <a href="contacts.html" class="item-link item-content">Наши контакты</a>
+      </div>
+    </div>
+
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        
+        
+        
+        <div class="navbar theme-red">
+          <!-- Navbar inner for Index page-->
+          <div data-page="index" class="navbar-inner">  
+            <div class="Left">
+              <!-- Right link contains only icon - additional "icon-only" class-->
+              <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+            </div>
+            <!-- We have home navbar without left link-->
+           
+            <div class="center sliding">
+            </div>
+                        
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i> </a>-->
+                <a href="#" data-panel="right" class="link icon-only open-panel"> 
+              <div class="col-50"></div>
+                <i class="material-icons">help_outline</i>
+              </a>      
+            </div>
+          </div>
+  
+      
+          
+          <!-- Navbar inner for About page-->
+          <div data-page="about" class="navbar-inner cached">
+            <div class="left sliding">
+          <!--  <a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a>-->
+            </div>
+            <div class="center sliding"></div>
+                <div class="right sliding">
+            <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+              </div>
+          </div>
+          <!-- Navbar inner for Services page-->
+          <div data-page="services" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div class="center sliding">Services</div>
+          </div>
+          <!-- Navbar inner for Form page-->
+          <div data-page="form" class="navbar-inner cached">
+           
+            <div class="left sliding">
+                 <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+            </div>
+            
+           
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+           
+ 
+           
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title ">ООО Лабораторные Технологии</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <p>Расчет вязкости краски с помощью вискозиметра ВЗ-246</p>
+                      <p>Для определения вязкости жидкости, полностью наполните чашу вискозиметра. Затем откройте отверстие сопла и начните одновременно с этим замер времени секундомером. </p>
+                 
+                </div>
+              </div>
+              
+              
+              <!--САМ СЕКУНДОМЕР-->
+              
+<div class="content-block">                          
+<form name=MyForm>   
+	<div class="list-block">
+  <ul>
+    <!-- Single radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <!-- Checked by default -->
+        <input type="radio" name="my-radio" id="CheckBox1" value="2mm" checked="checked" alt="Books">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 2 мм.</div>
+        </div>
+      </label>
+    </li>
+    <!-- Another radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" id="CheckBox2" value="4mm" alt="Movies">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 4 мм.</div>
+        </div>
+      </label>
+    </li>
+        <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" id="CheckBox3" value="6mm" alt="Movies2">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 6 мм.</div>
+        </div>
+      </label>
+       </li>
+  
+  </ul>
+</div>  
+
+
+</form> 
+  </div>
+         <div class="content-block-title">What about simple navigation?</div>
+              <div class="list-block">
+                <ul onchange="ChangeList()">
+                  <li><a href="#about" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#services" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Services</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#form" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Form</div>
+                        </div>
+                      </div></a></li>
+                      <li><a href="#about2" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About2</div>
+                        </div>
+                      </div></a></li>
+                     <li><a href="cars.html" data-context-name="cars" class="item-link item-content" class="external">
+                      <div class="item-inner">
+                        <div class="item-title">My Cars</div>
+                      </div></a></li>
+                </ul>
+              </div>
+              <div class="content-block-title">Side panels</div>
+              <div class="content-block">
+                <div class="row">
+                  <div class="col-50"><a href="#" data-panel="left" class="button open-panel">Left Panel</a></div>
+                  <div class="col-50"><a href="#" data-panel="right" class="button open-panel">Right Panel</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- About Page-->
+           <div data-page="about" class="page cached">
+            <div class="page-content">
+              <div class="content-block">
+           
+                <p>Выберите диаметр сопла, с которым производились измерения
+                </p>
+                
+  <form name=FormSecond>       
+  <div class="list-block">
+   <br>
+  
+  	<div class="row">
+    <!-- Each "cell" has col-[widht in percents] class -->
+    <div class="col-33"></div>
+    <div class="col-33">
+    <input name=stopwatch size=20 value="00:00:00" class="redcolor sekund-style center">
+    </div>
+    <div class="col-33"></div>
+</div>
+	
+	  <br>
+	<div class="row buttonstyle">
+    <!-- Each "cell" has col-[widht in percents] class -->
+    <div class="col-50">
+     <input type=button value="Запуск/Остановить" onclick="StartStop()" class="button button-big button-fill color-green">
+   </div>
+    <div class="col-50">
+     <input type=button value="Обнулить" onclick="ClearСlock()" class="button button-big button-fill color-red">
+    </div>
+    </div>  
+       <br>
+      
+	<input name=stopwatch2x><br>	
+	<input name="stopwatch3x"><br>
+	<input name="stopwatch4x"><br>
+	<input name="stopwatch5x"><br>
+	
+	
+  
+  Конечный результат 
+  <input name="resultpole" class="redcolor sekund-style center"> сСтокс<br>
+  
+</div>  
+		
+              	  </form>
+     
+                                     
+                
+              </div>
+            </div>
+          </div>
+
+         </div>
+        <!-- Bottom Toolbar-->
+        <div class="toolbar toolbar-bottom theme-black">
+    <div class="toolbar-inner">
+    <a href="#" class="link back">
+<i class="material-icons">keyboard_arrow_left</i>НАЗАД</a></a>  
+     
+      <a href="#" class="link">
+    
+      <i class="material-icons">home</i></a>
+   
+ <a href="#" class="link">ДАЛЕЕ<i class="material-icons">keyboard_arrow_right</i></a>
+  </div>
+  </div>
+      <!--  <div class="toolbar theme-black">
+          <div class="toolbar-inner">
+            <a href="#" class="link back">
+            <i class="icon icon-back"></i>НАЗАД</a>      
+        </div>
+      </div>-->
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="/js/framework7.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+     <link rel="stylesheet" href="css/framework7.material.css">
+ <!--<link rel="stylesheet" href="../../dist/css/framework7.ios.min.css">-->
+ <link rel="stylesheet" href="css/framework7.material.colors.css">
+<!-- <link rel="stylesheet" href="../../dist/css/framework7.ios.colors.min.css">-->
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"> 
+<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Jura|Lobster|Rajdhani|Roboto+Condensed" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+    
+    
+    <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/my-app.css">
+  </head>
+<!--
+ <script language="JavaScript" type="text/javascript">
+//объявляем переменные
+var base = 60; 
+var clocktimer,dateObj,dh,dm,ds,ms; 
+var readout=''; 
+var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0; 
+//функция для очистки поля
+function ClearСlock() { 
+	clearTimeout(clocktimer); 
+	h=1;m=1;tm=1;s=0;ts=0;ms=0; 
+	init=0;
+	readout='00:00.00'; 
+	document.MyForm.stopwatch.value=readout; 
+} 
+//функция для старта секундомера
+function StartTIME() { 
+	var cdateObj = new Date(); 
+	var t = (cdateObj.getTime() - dateObj.getTime())-(s*1000); 
+	if (t>999) { s++; } 
+	if (s>=(m*base)) { 
+		ts=0; 
+		m++; 
+	} else { 
+		ts=parseInt((ms/100)+s); 
+		if(ts>=base) { ts=ts-((m-1)*base); } 
+	} 
+	if (m>(h*base)) { 
+		tm=1; 
+		h++; 
+	} else { 
+		tm=parseInt((ms/100)+m); 
+		if(tm>=base) { tm=tm-((h-1)*base); } 
+	} 
+	ms = Math.round(t/10); 
+	if (ms>99) {ms=0;} 
+	if (ms==0) {ms='00';} 
+	if (ms>0&&ms<=9) { ms = '0'+ms; } 
+	if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; } 
+	dm=tm-1; 
+	if (dm>0) { if (dm<10) { dm = '0'+dm; }} else { dm = '00'; } 
+	dh=h-1; 
+	if (dh>0) { if (dh<10) { dh = '0'+dh; }} else { dh = '00'; } 
+	/*readout = +dh + ':' + dm + ':' + ds + '.' + ms;*/
+    readout = dm + ':' + ds + '.' + ms;
+	document.MyForm.stopwatch.value = readout;
+   
+  
+ /*  if(document.getElementsByName('my-radio')[1].checked="true")
+         {
+        var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0; 
+         };
+    */
+	clocktimer = setTimeout("StartTIME()",1); 
+            
+} 
+//Функция запуска и остановки
+function StartStop() { 
+	if (init==0){ 
+		ClearСlock();
+		dateObj = new Date(); 
+		StartTIME(); 
+		init=1; 
+       
+	} else { 
+		clearTimeout(clocktimer);
+		init=0;
+       
+
+        check();
+        
+          
+	} 
+};
+               
+function check()
+ {  
+     var variant=document.getElementsByName('my-radio');
+     if (variant[0].checked==true){
+
+         document.MyForm.stopwatch2x.value = ds;
+          }
+         if (variant[1].checked==true){
+
+         document.MyForm.stopwatch2x.value = ds*2;
+          }
+         if (variant[2].checked==true){
+    
+         document.MyForm.stopwatch2x.value = ds*3;
+          }
+}; 
+     
+function change1(){
+    var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0;    
+};     
+               
+function change2(){
+    var yy = Number.parseInt(ds);
+    yy=yy*4;
+    document.MyForm.stopwatch3x.value = yy; 
+    yy=0;
+    
+};   
+function change3(){
+    var zz = Number.parseInt(ds);
+    zz=zz*6;
+    document.MyForm.stopwatch4x.value = zz; 
+    zz=0;
+    
+};  
+ </script>   -->
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <!-- Right panel with cover effect-->
+  <!--  <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>-->
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        
+        
+        
+
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+      
+              <div class="content-block">
+        
+              </div>
+ 
+            <!--  background-image: radial-gradient(circle, #ff9900, #ca1b1b);-->
+ 
+
+    
+                                   
+                <a href="index.html"><input type=button value="Запуск/Остановить" class="button button-big button-fill color-green"> </a>  
+ 
+             
+           
+             
+            </div>
+          </div>
+          <!-- About Page-->
+     
+                   <!-- About Page-->
+      
+          <!-- Services Page-->
+        </div>
+        <!-- Bottom Toolbar-->
+
+     <!--  <div class="toolbar">
+          <div class="toolbar-inner">
+            <a href="index.html" class="link back">
+            <i class="icon icon-back"></i>Назад</a>      
+        </div>
+      </div>-->
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>

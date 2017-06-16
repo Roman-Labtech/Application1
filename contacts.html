@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+     <link rel="stylesheet" href="css/framework7.material.css">
+ <!--<link rel="stylesheet" href="../../dist/css/framework7.ios.min.css">-->
+ <link rel="stylesheet" href="css/framework7.material.colors.css">
+<!-- <link rel="stylesheet" href="../../dist/css/framework7.ios.colors.min.css">-->
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"> 
+<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Jura|Lobster|Rajdhani|Roboto+Condensed" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+    
+    
+    <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/my-app.css">
+  </head>
+
+ <script language="JavaScript" type="text/javascript">
+//объявляем переменные
+var base = 60; 
+var clocktimer,dateObj,dh,dm,ds,ms; 
+var readout=''; 
+var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0; 
+//функция для очистки поля
+function ClearСlock() { 
+	clearTimeout(clocktimer); 
+	h=1;m=1;tm=1;s=0;ts=0;ms=0; 
+	init=0;
+	readout='00:00.00'; 
+	document.MyForm.stopwatch.value=readout; 
+} 
+//функция для старта секундомера
+function StartTIME() { 
+	var cdateObj = new Date(); 
+	var t = (cdateObj.getTime() - dateObj.getTime())-(s*1000); 
+	if (t>999) { s++; } 
+	if (s>=(m*base)) { 
+		ts=0; 
+		m++; 
+	} else { 
+		ts=parseInt((ms/100)+s); 
+		if(ts>=base) { ts=ts-((m-1)*base); } 
+	} 
+	if (m>(h*base)) { 
+		tm=1; 
+		h++; 
+	} else { 
+		tm=parseInt((ms/100)+m); 
+		if(tm>=base) { tm=tm-((h-1)*base); } 
+	} 
+	ms = Math.round(t/10); 
+	if (ms>99) {ms=0;} 
+	if (ms==0) {ms='00';} 
+	if (ms>0&&ms<=9) { ms = '0'+ms; } 
+	if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; } 
+	dm=tm-1; 
+	if (dm>0) { if (dm<10) { dm = '0'+dm; }} else { dm = '00'; } 
+	dh=h-1; 
+	if (dh>0) { if (dh<10) { dh = '0'+dh; }} else { dh = '00'; } 
+	/*readout = +dh + ':' + dm + ':' + ds + '.' + ms;*/
+    readout = dm + ':' + ds + '.' + ms;
+	document.MyForm.stopwatch.value = readout;
+   
+  
+ /*  if(document.getElementsByName('my-radio')[1].checked="true")
+         {
+        var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0; 
+         };
+    */
+	clocktimer = setTimeout("StartTIME()",1); 
+            
+} 
+//Функция запуска и остановки
+function StartStop() { 
+	if (init==0){ 
+		ClearСlock();
+		dateObj = new Date(); 
+		StartTIME(); 
+		init=1; 
+       
+	} else { 
+		clearTimeout(clocktimer);
+		init=0;
+       
+
+        check();
+        
+          
+	} 
+};
+               
+function check()
+ {  
+     var variant=document.getElementsByName('my-radio');
+     if (variant[0].checked==true){
+
+         document.MyForm.stopwatch2x.value = ds;
+          }
+         if (variant[1].checked==true){
+
+         document.MyForm.stopwatch2x.value = ds*2;
+          }
+         if (variant[2].checked==true){
+    
+         document.MyForm.stopwatch2x.value = ds*3;
+          }
+}; 
+     
+function change1(){
+    var xx = Number.parseInt(ds);
+    xx=xx*2;
+    document.MyForm.stopwatch2x.value = xx;
+    xx=0;    
+};     
+               
+function change2(){
+    var yy = Number.parseInt(ds);
+    yy=yy*4;
+    document.MyForm.stopwatch3x.value = yy; 
+    yy=0;
+    
+};   
+function change3(){
+    var zz = Number.parseInt(ds);
+    zz=zz*6;
+    document.MyForm.stopwatch4x.value = zz; 
+    zz=0;
+    
+};  
+     
+     
+myApp.onPageInit('map', function(page) { 
+    console.log('map page initialized'); 
+    function initialize() 
+                                        { define function var mapProp = { center: new google.maps.LatLng(51.508742, -0.120850), zoom: 5, mapTypeId: google.maps.MapTypeId.ROADMAP }; var map = new google.maps.Map(document.getElementById('googleMap'), mapProp); } initialize(); 
+  run function });      
+ </script>   
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal theme-orange">
+      <div class="content-block">
+          <p><h2>Наша продукция</h2></p>
+        <div class="content-block-title">Пробоотборники</div>
+<div class="list-block accordion-list">
+  <ul>
+    <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Для газа</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+          <p>- ПГО-50</p>
+          <p>- ПГО-100</p>
+          <p>- ПГО-400</p>
+        </div>
+      </div>
+    </li>
+    <li class="accordion-item">
+       <a href="contacts.html" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+             Нефтепродуктов
+          </div>
+        </div>
+        </a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+         Красок
+          </div>
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+    
+        <li class="accordion-item"><a href="#about" class="item-content item-link">
+        <div class="item-inner">
+            <div class="item-title">
+        Агрессивных сред 
+          </div>
+             </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+        
+    </li>
+        <li class="accordion-item"><a href="#about" class="item-content item-link">
+        <div class="item-inner">
+        
+            <div class="item-title">Воды</div>
+         
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title textraja">
+         Пищевых продуктов
+          </div>
+        </div></a>
+        <div class="accordion-item-content">
+            <div class="content-block">
+              <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+            </div>
+        </div>
+    </li>
+  </ul>
+</div>
+        <p>Микрошприцы АГАТ</p>
+        <p> <div class="icon"><i class="material-icons">help_outline</i>help<i class="material-icons">help_outline</i></div></p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        
+        
+        
+        <div class="navbar theme-red">
+          <!-- Navbar inner for Index page-->
+          <div data-page="index" class="navbar-inner">
+             
+              <div class="Left">
+              <!-- Right link contains only icon - additional "icon-only" class-->
+              <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+            </div>
+            <!-- We have home navbar without left link-->
+           
+            <div class="center sliding">
+                Наши контакты       
+            </div>
+            
+            
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i> </a>-->
+              <a href="#" class="link icon-only"> 
+              
+              <i class="material-icons">help_outline</i></a>
+             
+         
+            </div>
+            
+          </div>
+  
+      
+          
+          <!-- Navbar inner for About page-->
+          <div data-page="about" class="navbar-inner cached">
+            <div class="left sliding">
+          <!--  <a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a>-->
+            </div>
+            <div class="center sliding"></div>
+                <div class="right sliding">
+            <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+              </div>
+          </div>
+          <!-- Navbar inner for Services page-->
+          <div data-page="services" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div class="center sliding">Services</div>
+          </div>
+          <!-- Navbar inner for Form page-->
+          <div data-page="form" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div class="center sliding">Form</div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+      
+              <div class="content-block">
+        
+              </div>
+              <!--САМ СЕКУНДОМЕР-->
+          
+
+    
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2216.4950969699894!2d43.38268771582145!3d56.252231360829406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414e3b09d56f5f0d%3A0x2eaffd91a1856d5d!2z0JvQsNCx0L7RgNCw0YLQvtGA0L3Ri9C1INCi0LXRhdC90L7Qu9C-0LPQuNC4!5e0!3m2!1sru!2sru!4v1497437060876" width="100%" height="70%" frameborder="0" style="border:0" allowfullscreen></iframe>                                  
+                               
+ 
+              <div class="content-block-title">What about simple navigation?</div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="#about" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#services" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Services</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#form" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Form</div>
+                        </div>
+                      </div></a></li>
+                      <li><a href="#about2" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About2</div>
+                        </div>
+                      </div></a></li>
+                     <li><a href="cars.html" data-context-name="cars" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">My Cars</div>
+                      </div></a></li>
+                </ul>
+              </div>
+              <div class="content-block-title">Side panels</div>
+              <div class="content-block">
+               
+               <a href=«tel:+1234567»>123456 Call!</a>
+                <div class="row">
+                  <div class="col-50"><a href="#" data-panel="left" class="button open-panel">Left Panel</a></div>
+                  <div class="col-50"><a href="#" data-panel="right" class="button open-panel">Right Panel</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+
+        <div class="toolbar">
+          <div class="toolbar-inner">
+              <a href="#" class="back link"> <i class="icon icon-back"></i><span>Назад</span></a>
+           
+        </div></div> 
+
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>

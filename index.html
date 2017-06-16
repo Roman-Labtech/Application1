@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+     <link rel="stylesheet" href="css/framework7.material.css">
+ <!--<link rel="stylesheet" href="../../dist/css/framework7.ios.min.css">-->
+ <link rel="stylesheet" href="css/framework7.material.colors.css">
+ 
+<!-- <link rel="stylesheet" href="../../dist/css/framework7.ios.colors.min.css">-->
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"> 
+<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Jura|Lobster|Rajdhani|Roboto+Condensed" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+    
+    
+    <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/my-app.css">
+  </head>
+
+  
+ 
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal panelgray">
+		<img src="/img/222.png" width="100%">
+      <div class="content-block">
+        
+          <div class="content-block">
+			<h3>
+				<a href="index.html">На главную</a>
+			</h3>
+		</div>
+ 
+<div class="list-block accordion-list">
+  <ul>
+    <li class="accordion-item">
+       <a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Пробоотборники</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+			<p>- <a href="gas.html" data-ignore-cache="true" class="graylink"
+         >Газа</a></p>
+			<p>- <a href="neft.html" data-ignore-cache="true" class="graylink">Нефтепродуктов</a></p>
+			<p>-<a href="kraski.html" data-ignore-cache="true" class="graylink"> Красок</a></p>
+			<p>-<a href="agress.html" data-ignore-cache="true" class="graylink"> Агрессивных сред</a></p>
+			<p>-<a href="eda.html" data-ignore-cache="true" class="graylink"> Пищевых продуктов</a></p>
+        </div>
+      </div>
+    </li>
+    <li class="accordion-item">
+       <a href="contacts.html" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+             Вискозиметры
+          </div>
+        </div>
+        </a>
+     
+    </li>
+    <li class="accordion-item">                  
+        <a href="contacts.html" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+         Запорная арматура
+          </div>
+        </div>
+        </a>
+    </li>
+    
+        <li class="accordion-item"><a href="#about" class="item-content item-link">
+        <div class="item-inner">
+            <div class="item-title">
+        Микрошприцы
+          </div>
+             </div></a>
+     
+        
+    </li>
+
+  </ul>
+</div>
+      <div class="content-block">
+		  <h3><b>Калькулятор вязкости</b></h3>
+      </div>
+      
+       
+       
+        <p> 
+        <div class="icon">
+        <i class="material-icons">help_outline</i>
+ 
+        </div></p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+      
+      <p>Right panel content goes here</p>
+
+
+     
+   <div class="list-block">
+    <div class="list-group">
+      <ul>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title">
+              	<a href="searchbar.html" class="item-link"> 
+         <i class="material-icons">search</i>    Поиск
+        </a>
+              </div>
+            </div>
+          </div>
+         </li>
+          <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title">
+               <a href="contacts.html" class="item-link">Наши контакты</a>
+              </div>
+            </div>
+          </div>
+         </li>
+		</ul>
+      </div>
+    </div>
+        
+   
+      
+        
+                      
+                     
+    
+      
+
+                  
+
+ 
+
+  
+      </div>
+    </div>
+
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        
+        
+        
+        <div class="navbar navbar-bottom theme-black">
+          <!-- Navbar inner for Index page-->
+          <div data-page="index" class="navbar-inner">  
+            <div class="Left">
+              <!-- Right link contains only icon - additional "icon-only" class-->
+              <a href="#" class="link icon-only open-panel"> 
+              <i class="icon icon-bars"></i></a>
+            </div>
+            <!-- We have home navbar without left link-->
+           
+            <div class="center sliding">
+            </div>
+                        
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i> </a>-->
+                <a href="#" data-panel="right" class="link icon-only open-panel"> 
+              <div class="col-50"></div>
+                <i class="material-icons">
+                	help_outline
+                </i>
+              </a>      
+            </div>
+          </div>
+  
+      
+          
+          <!-- Navbar inner for About page-->
+          <div data-page="about" class="navbar-inner cached">
+            <div class="left sliding">
+       
+				<a href="#" data-panel="left" class="link icon-only open-panel"> </a>
+           
+            </div>
+            <div class="center sliding"></div>
+                <div class="right sliding">
+             <a href="#" data-panel="right" class="link icon-only open-panel">   <i class="material-icons">help_outline</i></a>
+              </div>
+          </div>
+          
+          <!-- Navbar inner for Services page-->
+          <div data-page="services" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div class="center sliding">Services</div>
+          </div>
+          
+          <!-- Navbar inner for Form page-->
+          <div data-page="form" class="navbar-inner cached">
+           
+            <div class="left sliding">
+                 <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+            </div>
+            
+           
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+           
+ 
+           
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title ">ООО Лабораторные Технологии</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <p>Расчет вязкости краски с помощью вискозиметра ВЗ-246</p>
+                      <p>Для определения вязкости жидкости, полностью наполните чашу вискозиметра. Затем откройте отверстие сопла и начните одновременно с этим замер времени секундомером. </p>
+                 
+                </div>
+              </div>
+              
+              
+              <!--САМ СЕКУНДОМЕР-->
+              
+<div class="content-block">                          
+<form name=FormOne>   
+	<div class="list-block">
+  <ul>
+    <!-- Single radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <!-- Checked by default -->
+        <input type="radio" name="my-radio" id="CheckBox1" value="2mm" checked="checked" alt="Books">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 2 мм.</div>
+        </div>
+      </label>
+    </li>
+    <!-- Another radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" id="CheckBox2" value="4mm" alt="Movies">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 4 мм.</div>
+        </div>
+      </label>
+    </li>
+        <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" id="CheckBox3" value="6mm" alt="Movies2">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Сопло 6 мм.</div>
+        </div>
+      </label>
+       </li>
+  
+  </ul>
+</div>  
+
+
+</form> 
+  </div>
+       <div class="content-block">
+                <div class="row">
+                  <div class="col-50">
+                  <a href="#about">
+                  	  <input type=button value="Далее" class="button button-big button-fill color-green">   
+                  </a>
+				   </div>
+      			 <div class="col-50"></div>
+       			 </div>
+				</div>
+        
+        
+         <div class="content-block-title">What about simple navigation?</div>
+              <div class="list-block">
+                <ul onchange="ChangeList()">
+                  <li><a href="#about" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#services" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Services</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#form" class="item-link">c
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Form</div>
+                        </div>
+                      </div></a></li>
+                      <li><a href="search.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">Search</div>
+                        </div>
+                      </div></a></li>
+                     <li><a href="cars.html" data-context-name="cars" class="item-link item-content" class="external">
+                      <div class="item-inner">
+                        <div class="item-title">My Cars</div>
+                      </div></a></li>
+                </ul>
+              </div>
+              <div class="content-block-title">Side panels</div>
+              <div class="content-block">
+                <div class="row">
+                  <div class="col-50"><a href="#" data-panel="left" class="button open-panel">Left Panel</a></div>
+                  <div class="col-50"> <a href="about.html" data-reload="true" data-ignore-cache="true">Refresh page</a></div>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+          <!-- About Page-->
+           <div data-page="about" class="page cached">
+            <div class="page-content">
+              <div class="content-block">
+          
+                
+  <form name=MyForm>       
+  <div class="list-block">
+   <br>
+  
+  	<div class="row">
+    <!-- Each "cell" has col-[widht in percents] class -->
+    <div class="col-33"></div>
+    <div class="col-33">
+    <input name=stopwatch size=20 value="00:00:00" class="redcolor sekund-style center">
+    </div>
+    <div class="col-33"></div>
+</div>
+	
+	  <br>
+	<div class="row buttonstyle">
+    <!-- Each "cell" has col-[widht in percents] class -->
+    <div class="col-50">
+        
+      	<img  id="change" width="100%" name="change" src="/img/pic1.png" onclick="swapImage();StartStop()" />
+     <input type=button value="Запуск/Остановить" onclick="StartStop()" class="button button-big button-fill color-green">
+   </div>
+    <div class="col-50">
+    <img  id="change1" width="100%" name="change1" src="/img/pic1.png" onclick="swapImage1();ClearСlock()" />
+    <!--	<img  id="change2" name="change2" src="/img/pic3.png" onclick="swapImage1();ClearСlock()" />-->
+     <input type=button value="Обнулить" onclick="ClearСlock()" class="button button-big button-fill color-red">
+	 
+     
+     
+    </div>
+    </div>  
+       <br>
+      
+	<input name=stopwatch2x><br>	
+	<input name="stopwatch3x"><br>
+	<input name="stopwatch4x"><br>
+	<input name="stopwatch5x"><br>
+	
+	
+  
+  Конечный результат 
+  <input name="resultpole" class="redcolor sekund-style center"> сСтокс<br>
+  
+</div>  
+		
+</form>
+MAP();
+
+     
+                                     
+                
+              </div>
+            </div>
+          </div>
+
+         </div>
+        <!-- Bottom Toolbar-->
+
+      <!--  <div class="toolbar theme-black">
+          <div class="toolbar-inner">
+            <a href="#" class="link back">
+            <i class="icon icon-back"></i>НАЗАД</a>      
+        </div>
+      </div>-->
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="/js/framework7.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>
